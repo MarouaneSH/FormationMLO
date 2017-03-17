@@ -1,0 +1,194 @@
+*
+{
+font-family: 'Source Sans Pro', sans-serif;
+font-size: 16px
+
+}
+.navbar
+{
+    background: #2196F3!important;
+    color: white;
+    border: none;
+    border-radius: 0;
+    z-index: 1;
+}
+.navbar-inverse .navbar-brand ,.navbar-inverse .navbar-nav>li>a
+{
+    color: white;
+}
+body
+{
+    background: #f9f9f9;
+}
+.dropdown
+{
+        margin-top: 7px;
+    margin-right: 20px;
+}
+#menu-left
+{
+    position: fixed;
+    width: 200px;
+    height: 100vh;
+    background:white;
+    top: 0;
+    padding-top: 120px;
+    border-right: solid rgba(204, 204, 204, 0.34) 2px;
+
+}
+#menu-left a
+{
+    text-decoration: none;
+    color: black;
+}
+#menu-left ul
+{
+    list-style: none;
+}
+#menu-left .menu-header
+{
+    color: #2196F3;
+    margin-top: 20px;
+}
+.card
+{
+    background: white;
+    padding: 10px;
+   border: solid rgba(128, 128, 128, 0.12) 1px;
+   margin-top: 20px;
+   border-left: solid #2196F3 4px
+}
+.item
+{
+    color: #2196F3;
+}
+.fa
+{
+    margin-right: 10px;
+}
+#menu .fa
+{
+    font-size: 15px;
+}
+.disabled
+{
+    cursor:not-allowed;
+    opacity: 0.5;
+}
+.col-md-12
+{
+    padding: 0;
+}
+
+.form-group
+{
+    margin-top: 10px;
+}
+
+.loading
+{
+    width: 90vh;
+    max-width: 900px;
+    height: 300px;
+    position: fixed;
+    z-index: 5;
+    background: #f9f9f9;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    border: solid 1px rgba(0, 0, 0, 0.18);
+    display: none;
+}
+.loading img
+{
+    position: absolute;
+     left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+.loading .fa
+{
+        font-size: 50px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 50%;
+    text-align: center;
+    margin-top: 120px;
+
+}
+.loading h5
+{
+        position: absolute;
+    bottom: 50px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 50%;
+    text-align: center;
+}
+.loading h4
+{
+    font-weight: bold;
+    position: absolute;
+    right: 5px;
+    bottom: 0;
+    font-size: 15px
+}
+.success
+{
+    width: 90vh;
+    max-width: 900px;
+    height: 300px;
+    position: fixed;
+    z-index: 5;
+    background: #f9f9f9;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    border: solid 1px rgba(0, 0, 0, 0.18);
+    text-align: center;
+    display: none;
+
+}
+.success .fa
+{
+    font-size: 60px;
+    margin-top: 40px;
+}
+
+.exit{
+    position: absolute;
+    color: black;
+    top: 5px;
+    right: 8px;
+    font-size: 30px !important;
+    cursor: pointer;
+}
+#lbl-verification
+{
+    cursor: pointer;
+}
+.btn-success 
+{
+    background: #23bab5;
+    border-color: #23bab5;
+}
+.btn-success:hover , .btn-success:focus , .btn-success:active ,.btn-success:visited 
+{
+     background: #2a928f;
+
+}
+.btn-success:focus
+{
+
+}

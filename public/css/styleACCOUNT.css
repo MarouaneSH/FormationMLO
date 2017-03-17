@@ -1,0 +1,19 @@
+#resetmdp ,#resetemail , #resetTEL
+{
+    cursor: pointer;
+}
+.cancel
+ {
+     color: red;
+    display: none;
+     cursor: pointer;
+     font-size: 12px;
+ }
+ .subscription p
+ {
+     color: red;
+ }
+ #formGenralInfo
+ {
+     margin-top: 40px
+ }
