@@ -10,26 +10,6 @@ function closeEXIT()
     })
 }
 
-
-// function ShowerrorOrSuccess(data,divToClose)
-// {
-//     $(".loading").hide();
-//     if(data.success==true)
-//     {
-//         $(".alert").hide();
-//         $(".success").show();
-//         $(divToClose).hide();
-//     }
-//     else
-//     {
-//         $(".alert").show();
-//         $.each(data.errors,function(i,error){
-//             $(".alert").append("<li>"+error+"</li>")
-//         });
-//     }
-// }
-
-
 function GetAjaxData(ROUTEurl,divToSubmit,TypeMethod,divToClose)
 {
    $(divToSubmit).submit(function(e)
@@ -63,6 +43,7 @@ function GetAjaxData(ROUTEurl,divToSubmit,TypeMethod,divToClose)
                 },
                 error:function()
                 {
+                    $(".loading").hide();
                     alert("Something Wrong Please Contact Developer to Reseolve This problem");
                 }
             })

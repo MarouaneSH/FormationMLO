@@ -32,6 +32,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/ShowMessages',"MessageUserController@ShowMessage")->name("showMessage");
     //Filtre Messgaes
     Route::get('/FiltreMessages/{read}',"MessageUserController@FiltreMessage")->name("filtreMessages");
+    //Make Message Reaad
+    Route::post('/MakeMessageRead/{id_msg}',"MessageUserController@MakeMessageRead")->name("MakeMessageRead");
+    //Send Message
+    Route::post('/sendMessage',"MessageUserController@sendMessage")->name("sendMessage");
+    
+ /*END SECTION MESSAGES*/   
 });
 
 

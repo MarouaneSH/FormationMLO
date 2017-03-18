@@ -40,7 +40,7 @@
                     <li><i class="fa fa-credit-card-alt" aria-hidden="true"></i><a href="{{route('subscription')}}">Subscriptions</a> </li>
                     <li class="menu-header">COURS</li>
                     <li><i class="fa fa-leanpub" aria-hidden="true"></i>Voir Les Cours</li>
-                    <li><i class="fa fa-comment-o" aria-hidden="true"></i>Messages</li>
+                    <li><i class="fa fa-comment-o" aria-hidden="true"></i><a href="{{route('message')}}">Messages</a></li>
                 </ul>
             </div>
             <div class="container">
@@ -60,7 +60,7 @@
         <h5>Chargement.....</h5>
         <h4>MLO FORMATION</h4>
     </div>
-
+    
     <!--hide Back-->
     <div class="back-hide">
     </div>

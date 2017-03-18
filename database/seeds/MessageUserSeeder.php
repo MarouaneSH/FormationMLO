@@ -28,39 +28,6 @@ class MessageUserSeeder extends Seeder
             'date_message'=> Carbon::now(),
             'read'=>false,   
             ],
-            [
-            'user' => '1',
-            'Sender_name'=> "Admin",
-            'title' => str_random(5),
-            'comment' => str_random(30),
-            'date_message'=> Carbon::now(),
-            'read'=>false,   
-            ],
-            [
-            'user' => '1',
-            'Sender_name'=> "Admin",
-            'title' => str_random(5),
-            'comment' => str_random(30),
-            'date_message'=> Carbon::now(),
-            'read'=>false,   
-            ],
-            [
-            'user' => '1',
-            'Sender_name'=> "Admin",
-            'title' => str_random(5),
-            'comment' => str_random(30),
-            'date_message'=> Carbon::now(),
-            'read'=>false,   
-            ],
-            [
-            'user' => '2',
-            'Sender_name'=> "USER2",
-            'title' => str_random(5),
-
-            'date_message'=> Carbon::now(),
-            'read'=>false,   
-            ],
-         
         ]);
     }
 }

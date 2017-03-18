@@ -9,6 +9,9 @@ use App\Messages_user;
 use App\User;
 use Illuminate\Support\Facades\DB;
 use Response;
+use App\Messages_admin;
+use Validator;
+use Carbon\Carbon;
 
 class MessageUserController extends Controller
 {
@@ -74,5 +77,56 @@ class MessageUserController extends Controller
          ]);
         
 
+    }
+
+    //Send Message To Admin
+    public function sendMessage(Request $request)
+    {
+        $validation = Validator::make($request->all(),
+        [
+           "title" => "required|max:200",
+           "message" => "required|max:1000",
+        ]);
+        if($validation->fails())
+        {
+            return Response::json([
+                "success" => false,
+                "errors" => $validation->errors()
+            ]);
+        }
+        $message = new Messages_admin();
+        $message->user_id = Auth::user()->id;
+        $message->title = $request->title;
+        $message->comment = $request->message;
+        $message->date_message = Carbon::now();
+        $message->read = false;
+        $message->save();   
+        return Response::json([
+                "success" => true,
+            ]);
+    }
+    
+    public function MakeMessageRead($msg_id)
+    {
+        if(request()->ajax())
+        {
+             $message = Messages_user::findOrFail($msg_id);
+             //For Security Check if Message Belogn to user
+             if($message->user ==  Auth::user()->id)
+             {
+                    $message->read = true;
+                    $message->save();
+                    return Response::json([
+                        "success" => true,
+                        "message"=>$message
+                    ]);
+             }
+             else
+             {
+                 return "Access Denied";
+             }
+        }
+        return "Access Denied";
+       
     }
 }

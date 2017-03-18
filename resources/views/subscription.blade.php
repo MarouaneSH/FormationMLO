@@ -137,12 +137,12 @@
         </form>
     </div>
 
-    <div class="success">
-     <i class="fa fa-times exit" aria-hidden="true" ></i>
-     <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-     <h4>MLO FORMATION</h4>
-    <h3>Votre Demande on été envoyer avec succès</h3>
-</div>
+        <div class="success">
+        <i class="fa fa-times exit" aria-hidden="true" ></i>
+        <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+        <h4>MLO FORMATION</h4>
+        <h3>Votre Demande on été envoyer avec succès</h3>
+    </div>
 </div>
 
 
