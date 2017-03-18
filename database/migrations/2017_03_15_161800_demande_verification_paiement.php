@@ -15,13 +15,11 @@ class DemandeVerificationPaiement extends Migration
     {
          Schema::create('demande_verification_paiement', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name_account');
-            $table->string('email');
-            $table->string('telephone');
+            $table->string('user_id');
             $table->string('name_payeur');         
             $table->date('date_demande');
             $table->date('date_paiement');
-            $table->date('banque');  
+            $table->string('banque');  
         });
     }
 
@@ -32,6 +30,6 @@ class DemandeVerificationPaiement extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('demande_verification_paiement');
     }
 }

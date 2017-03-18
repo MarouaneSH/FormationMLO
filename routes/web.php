@@ -17,13 +17,21 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/formation',"DashboardController@index")->name('formation');
     Route::get('/Account',"DashboardController@account")->name('account');
     Route::get('/Subscription',"DashboardController@subscription")->name('subscription');
-
+    Route::get('/Message',"MessageUserController@index")->name('message');
 
     //Change User ACCOUNT Information
     Route::post('/changeINFO','DashboardController@changeINFO')->name('changeINFO');
 
     //Send Request Paiement Validation
     Route::post('/Verification_demande',"subscription_controller@store")->name('verfication_demande');
+
+/* Messages */
+    //Get All Messages
+    Route::get('/getALLMESSAGES',"MessageUserController@get")->name("getMessages");
+    //Show Full Messages
+    Route::get('/ShowMessages',"MessageUserController@ShowMessage")->name("showMessage");
+    //Filtre Messgaes
+    Route::get('/FiltreMessages/{read}',"MessageUserController@FiltreMessage")->name("filtreMessages");
 });
 
 

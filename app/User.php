@@ -29,8 +29,13 @@ class User extends Authenticatable
 
     /*Relation Paiment & Message*/
 
-    public function paiment()
+    public function Verification_paiement()
     {
-        return $this->hasOne('App\Paiment', 'code', 'paiement');
+        return $this->hasMany('App\Verification_paiement', 'user_id', 'id');
+    }
+
+     public function Messages_user()
+    {
+        return $this->hasMany('App\Messages_user', 'user', 'id');
     }
 }

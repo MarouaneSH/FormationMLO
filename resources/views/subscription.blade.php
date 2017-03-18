@@ -91,15 +91,19 @@
         </div>
     </div>
     <div class="paiement-verification">
+        <div class="alert alert-danger">
+        
+        </div>
         <i class="fa fa-times exit" aria-hidden="true" ></i>
         <h3>Verification de Paiment</h3>
         <form action="" id="request-verification">
+           {{csrf_field()}}
             <div class="row form-group">
                 <div class="col-md-4">
                    <label for="">Nom de Payeur</label> 
                 </div>
                 <div class="col-md-6">
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" name="name_payeur">
                 </div>
             </div>
              <div class="row form-group">
@@ -118,13 +122,13 @@
                    <label for="">Banque</label> 
                 </div>
                 <div class="col-md-6 ">
-                   <select class="form-control">
-                        <option>Attijari Wafa Bank</option>
-                        <option>Bmce Bank</option>
-                        <option>CIH</option>
-                        <option>Autre</option>
+                   <select class="form-control" name="banque">
+                        <option value="Attijari Wafa Bank">Attijari Wafa Bank</option>
+                        <option value="Bmce Bank">Bmce Bank</option>
+                        <option value="CIH">CIH</option>
+                        <option value="">Autre</option>
                   </select>
-                  <input id="AutreBanque" type="text" style="margin-top:10px;display:none;" class="form-control" placeholder="Entrer le nom de la banque">
+                  <input id="AutreBanque" type="text" name="AutreBanque" style="margin-top:10px;display:none;" class="form-control" placeholder="Entrer le nom de la banque">
                    <button type="submit" class="btn btn-primary">Envoyer une demande de verification</button>
                 </div>
             </div>
@@ -132,6 +136,13 @@
           
         </form>
     </div>
+
+    <div class="success">
+     <i class="fa fa-times exit" aria-hidden="true" ></i>
+     <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+     <h4>MLO FORMATION</h4>
+    <h3>Votre Demande on été envoyer avec succès</h3>
+</div>
 </div>
 
 
@@ -143,18 +154,14 @@
 $(document).ready(function() {
     $('#datePicker')
         .datepicker({
-            format: 'mm/dd/yyyy'
+            format: 'yyyy-mm-dd'
         })
-        .on('changeDate', function(e) {
-            // Revalidate the date field
-            $('#eventForm').formValidation('revalidateField', 'date');
-        });
 
     $("#lbl-verification").click(function(){
         $(".paiement-verification").fadeIn();
     })
     $('.paiement-verification select').on('change', function() {
-            if(this.value == "Autre")
+            if(this.value == "")
             {
                 $("#AutreBanque").show();
             }
@@ -164,7 +171,31 @@ $(document).ready(function() {
             }
     })
 
+   GetAjaxData("{{route('verfication_demande')}}", $("#request-verification") ,"POST",$(".paiement-verification"));
+  //submit form
+// $("#request-verification").submit(function(e)
+// {
+//     e.preventDefault();
+//     $.ajax({
+//         url:"{{route('verfication_demande')}}",
+//         type:"post",
+//         beforeSend:function()
+//         {
+//             $(".loading").show();
+//         },
+//         data:$(this).serialize(),
+//         success:function(data)
+//         {
+//             ShowerrorOrSuccess(data,$(".paiement-verification"));
+//         },
+//         error:function()
+//         {
+//             alert("Something Wrong Please Contact Developer to Reseolve This problem");
+//         }
+//     })
+// })
   
 });
+
 </script>
 @endsection

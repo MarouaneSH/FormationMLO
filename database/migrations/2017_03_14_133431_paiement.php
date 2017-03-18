@@ -27,6 +27,6 @@ class Paiement extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('paiements');
     }
 }

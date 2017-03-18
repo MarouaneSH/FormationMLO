@@ -17,10 +17,10 @@ class UsersSeeder extends Seeder
             'email' => 'test'.'@gmail.com',
             'password' => bcrypt('secret'),
             'telephone' => '064546897',
+            'subscribed'=> false,
             'date_subscription' => Carbon::now(),
-            'messages' => 'UIahzizaazhzaihazuhaua',
-            'paiement' => 'XQAZ-45',
-
+            
+             
         ]);
     }
 }

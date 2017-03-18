@@ -53,7 +53,18 @@
                 </div>
             </div>
             </div>
-            
+     <!--Loading -->
+     <div class="loading">
+        <img src="{{asset('img/ring (2).gif')}}" alt="">
+        <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+        <h5>Chargement.....</h5>
+        <h4>MLO FORMATION</h4>
+    </div>
+
+    <!--hide Back-->
+    <div class="back-hide">
+    </div>
+
     <script src="{{asset('js/jquery-3.1.1.min.js')}}"></script>
    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
    <script src="{{asset('js/global.js')}}"></script>

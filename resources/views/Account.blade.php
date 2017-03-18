@@ -80,12 +80,7 @@
          </div>       
      </div>    
 
-    <div class="loading">
-        <img src="{{asset('img/ring (2).gif')}}" alt="">
-        <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-        <h5>Chargement.....</h5>
-        <h4>MLO FORMATION</h4>
-    </div>
+    
 </div>
 <div class="success">
      <i class="fa fa-times exit" aria-hidden="true" ></i>
@@ -156,6 +151,9 @@
                  if(data.success==true)
                  {
                     $(".success").fadeIn();
+                    $("#cancelEMAIL").click();
+                     $("#cancelTEL").click();
+                      $("#cancelMDP").click();
                  }
                  else
                  {

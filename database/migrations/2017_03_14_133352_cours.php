@@ -29,6 +29,6 @@ class Cours extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('cours');
     }
 }

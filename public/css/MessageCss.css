@@ -1,0 +1,56 @@
+.mini-card
+{
+    width: 200px;
+    display: inline-block;
+    margin-right: 10px;
+}
+.card-message
+{
+    margin-left: 17px;
+    width: 30%;
+}
+
+.ShowMessgeContent{
+    width: 90vh;
+    max-width: 900px;
+    height: 300px;
+    position: fixed;
+    z-index: 5;
+    background: #f9f9f9;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    border: solid 1px rgba(0, 0, 0, 0.18);
+    text-align: center;
+    display: none
+}
+.ShowMessgeContent h5
+{
+    float: left;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.ShowMessgeContent .col-md-4 h4
+{
+        background: #2196f3;
+    padding: 10px;
+    color: white;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 8px;
+    margin-left: -1px;
+}
+.ShowMessgeContent .col-md-8 
+{
+    text-align: left
+}
+.ShowMessgeContent .col-md-8 h4
+{
+    margin-top: 15px;
+}
+.card-message
+{
+    cursor: pointer;
+}

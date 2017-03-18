@@ -19,10 +19,8 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('telephone');
-             $table->boolean('subscribed');
+           $table->boolean('subscribed');
             $table->date('date_subscription')->nullable();
-            $table->string('messages')->nullable();
-            $table->string('paiement')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

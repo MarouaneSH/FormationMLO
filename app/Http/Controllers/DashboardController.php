@@ -98,9 +98,13 @@ class DashboardController extends Controller
                                 "error" => $validator->errors()->first()
                             ]);
                         }
-                     if(strlen($request->telephone) <10 || strlen($request->telephone) >20)
+                        
+                     if(strlen($request->telephone) != 10)
                      {
-                        return 'Numerau du Téléphone est invalide';
+                         return Response::json([
+                                "success"=> false,
+                                "error" => 'Numéro de téléphone doivent contenir 10 chiffres',
+                            ]);
                      }
         }
       
