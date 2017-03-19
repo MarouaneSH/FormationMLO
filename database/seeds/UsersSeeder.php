@@ -18,7 +18,7 @@ class UsersSeeder extends Seeder
             'password' => bcrypt('secret'),
             'telephone' => '064546897',
             'subscribed'=> false,
-            'date_subscription' => Carbon::now(),
+            'created_at' => Carbon::now(),
             
              
         ]);
