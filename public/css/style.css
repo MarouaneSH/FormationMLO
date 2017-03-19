@@ -206,3 +206,7 @@ body
     left: 0;
     display: none
 }
+.card:hover
+{
+    background: rgba(135, 170, 197, 0.22);
+}

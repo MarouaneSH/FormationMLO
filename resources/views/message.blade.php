@@ -6,7 +6,7 @@
 @section('content')
 <div class="row">
     <div class="col-md-5 " style="padding:0">
-       <div class="card" id="showNewMessage">
+       <div class="card" id="showNewMessage" style="cursor:pointer">
             <h5><i class="fa fa-plus" aria-hidden="true"></i>Nouveau Message</h5>
        </div>  
     </div>
