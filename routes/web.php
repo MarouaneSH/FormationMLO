@@ -55,6 +55,4 @@ Route::get('Enseignant/Dashboard',"EnseignantController@index")->name('Enseignan
 // LOGOUT USERS
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout_user');
 
-Route::get('/test',function(){
-    return view('test');
-});
+Route::get('/test',"ZipController@unzip");

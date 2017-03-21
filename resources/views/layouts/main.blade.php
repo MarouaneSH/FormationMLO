@@ -18,18 +18,22 @@
                 </div>
                 <ul class="nav navbar-nav navbar-right">
                     <i class="fa fa-bell-o notification" aria-hidden="true">
-                        <p>8</p>
+                       <p></p>                
                     </i>
-                    <li class="notification-card">
-                        <a href="{{route('subscription')}}">
-                            <h5 style=" border-left: solid #FF5252;padding-left: 5px"><i class="fa fa-exclamation-circle" aria-hidden="true" style="color:red"></i>
-                            Vous n'avez aucun subscription <br> <span>Abonnez Vous Pour benificier de tous les cours </span>
-                            </h5>
-                        </a>
+                    <li id="notification-card">
+                       @if(!$subscribed)                          
+                            <a href="{{route('subscription')}}">
+                                <h5 style=" border-left: solid #FF5252;padding-left: 5px"><i class="fa fa-exclamation-circle" aria-hidden="true" style="color:red"></i>
+                                Vous n'avez aucun subscription <br> <span>Abonnez Vous Pour benificier de tous les cours </span>
+                                </h5>
+                            </a>
+                         @endif  
                         @foreach($message_nameSender as $message)
-                          <h5><i class="fa fa-commenting-o" aria-hidden="true" style="color:#F9A825"></i>Vous Avez un nouveaux Messages de {{$message->Sender_name}}
-                              <br> <span>Sujet : {{str_limit($message->title, 30)}} </span>
-                          </h5>
+                          <a href="{{route('message')}}">
+                                <h5><i class="fa fa-commenting-o" aria-hidden="true" style="color:#F9A825"></i>Vous Avez un nouveaux Messages de {{$message->Sender_name}}
+                                    <br> <span>Sujet : {{str_limit($message->title, 30)}} </span>
+                                </h5>
+                          </a>
                         @endforeach
                         
                     </li>
@@ -54,7 +58,7 @@
                     <li><i class="fa fa-id-card" aria-hidden="true"></i> <a href="{{route('account')}}">General</a></li>
                     <li><i class="fa fa-credit-card-alt" aria-hidden="true"></i><a href="{{route('subscription')}}">Subscriptions</a> </li>
                     <li class="menu-header">COURS</li>
-                    <li><i class="fa fa-leanpub" aria-hidden="true"></i>Voir Les Cours</li>
+                    <li><i class="fa fa-book" aria-hidden="true"></i><a href="{{route('cours')}}">Cours</a></li>
                     <li><i class="fa fa-comment-o" aria-hidden="true"></i><a href="{{route('message')}}">Messages</a></li>
                 </ul>
             </div>

@@ -260,6 +260,7 @@ function MakeMessageRead(id,currentDIV)
             alert("Something Wron Please Contact Developer");
         }
     })
+    CalculNotification(1);
 }
 </script>
 @endsection

@@ -1,0 +1,20 @@
+.fa-eye
+{
+font-size: 25px;
+
+}
+.card-table:hover
+{
+  background: none;
+}
+
+tr:hover
+{
+    background: #2196F3;
+    color: white;
+    cursor: pointer;
+}
+.cours-view
+{
+    display: none;
+}

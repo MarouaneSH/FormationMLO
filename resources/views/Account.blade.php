@@ -71,7 +71,7 @@
      <div class="col-md-4">
          <div class="card subscription">
             <h4>Subscription</h4>
-            @if( $subscribed == "Non")
+            @if(!$subscribed)
             <p>
                Vous n'avez aucun abonnement
             </p>

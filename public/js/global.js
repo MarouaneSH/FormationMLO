@@ -1,7 +1,25 @@
 $(document).ready(function(){
     closeEXIT();
+    ShowNotification();
+    CalculNotification(0);
 })
 
+function CalculNotification(substract)
+{
+    var count =0;
+    $("#notification-card a").each(function(){
+       count += 1;
+    })
+    $(".notification p").html(count-substract);
+
+}
+function ShowNotification()
+{
+    $(".notification").click(function(){
+        $(".notification p").toggle();
+        $("#notification-card").slideToggle();
+    })
+}
 function closeEXIT()
 {
     $(".exit").click(function(){

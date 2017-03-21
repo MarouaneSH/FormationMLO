@@ -9,6 +9,7 @@ use Hash;
 use Response;
 use DateTime;
 use View;
+use App\Cour;
 
 class DashboardController extends Controller
 {   
@@ -18,9 +19,11 @@ class DashboardController extends Controller
      {  
             if(!Auth::user()->subscribed)
             {
-                //if user not subsribed return to dashboard without Date Inforamtion
+                 $cours = Cour::all()->sortByDesc('id')->values()->take(5);
         
-                 return view('Dashboard');
+                 return view('Dashboard',[
+                     "cours" => $cours,
+                 ]);
             }
 
 
@@ -60,22 +63,14 @@ class DashboardController extends Controller
           $password = Auth::user()->password;
           $telephone= Auth::user()->telephone;
           $date_creation= Auth::user()->created_at;
-          //Check subscirption
-          if(Auth::user()->subscribed == false)
-          {
-             $subscribed = "Non" ;
-          }
-          else
-          {
-              $subscribed = "Oui" ;
-          }
+
+    
 
          return view('Account',[
              'name' => $name ,
              'email' => $email,
              'password'=>$password,
              'telephone' => $telephone ,
-             'subscribed' => $subscribed ,
              'date_creation' => $date_creation ,
           
          ]);

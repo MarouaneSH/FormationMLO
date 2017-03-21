@@ -18,6 +18,7 @@ class Cours extends Migration
                     $table->string('cours_name');
                     $table->string('Instructor');
                     $table->boolean('only_subscriber');
+                    $table->string('link');
                     $table->date('created_at');
         });
     }

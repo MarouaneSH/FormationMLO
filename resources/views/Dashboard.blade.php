@@ -31,11 +31,9 @@
     <div class="col-md-7">
         <ul class="list-group">
             <li class="list-group-item"><i class="fa fa-leanpub" aria-hidden="true"></i> Cours Récent <span><a href="#">Tous Les Cours</a></span></li>
-            <li class="list-group-item item">Formation 1 </li>
-            <li class="list-group-item item">Formation 2</li>
-            <li class="list-group-item item">Formation 3 </li>
-            <li class="list-group-item item">Formation 4</li>
-            <li class="list-group-item item">Formation 5 </li>
+            @foreach($cours as $cour)
+             <li class="list-group-item item">{{$cour->cours_name}} </li>
+            @endforeach
 
         </ul>
         <div class="card @if(!$subscribed) disabled @endif">
@@ -44,7 +42,7 @@
     </div>
     </div>
     <div class="col-md-4 ">
-        <div class="card ">
+        <div class="card " style="border-left:solid 5px #FF5252">
               <h4><i class="fa fa-clock-o" aria-hidden="true"></i> Temps Restant</h4>
               @if($subscribed) 
                   <h5 class="item">Il vous reste {{$jours_restant }} jours</h5>
@@ -53,14 +51,15 @@
                    <h5 class="item">Vous n'avez aucun subscription</h5>
               @endif
         </div>
-        <div class="card">
-          <h4><i class="fa fa-comment-o" aria-hidden="true"></i> Message</h4>
-            @if($message_unread != 0 )
-               <h5 class="item">Vous avez {{$message_unread}} nouveaux message .</h5>
-            @else
-               <h5 class="item">Vous n'avez aucun nouveau messages .</h5>
-            @endif
-           
+        <div class="card card-click" style="border-left:solid 5px #F9A825">
+            <a href="{{route('message')}}">
+               <h4><i class="fa fa-comment-o" aria-hidden="true"></i> Message</h4>
+                @if($message_unread != 0 )
+                <h5 class="item">Vous avez {{$message_unread}} nouveaux message .</h5>
+                @else
+                <h5 class="item">Vous n'avez aucun nouveau messages .</h5>
+                @endif
+           </a>
         </div>
    </div>
 </div>
