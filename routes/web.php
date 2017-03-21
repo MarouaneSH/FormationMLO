@@ -42,6 +42,8 @@ Route::group(['middleware' => ['auth','CheckUserSubscription']], function () {
     Route::get("/Cours","CoursController@index")->name('cours');
 
 /* END COURS */
+
+
 });
 
 

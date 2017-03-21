@@ -39,22 +39,35 @@ class ApiController extends Controller
 
    public function AddBooks(Request $reqeust)
    {
-       
+        
        if($reqeust->key == "MarouaneSH-api")
        {
-         $cour = new Cour();
-         $cour->cours_name = $reqeust->name;
-         $cour->Instructor= $reqeust->instructor;
-         $cour->only_subscriber = $reqeust->subscribed;
-         $cour->link =$reqeust->link;
-         $cour->created_at = Carbon::now();
-         $cour->save();
+
+        return view('api.addbooks');
+       
        }
         else
        {
            return "Access Denied";
        }
    }
-
+   
+   public function StoreBooks(Request $reqeust)
+   {
+       if($reqeust->key =="MarouaneSH-api")
+       {
+            $cour = new Cour();
+            $cour->cours_name = $reqeust->name;
+            $cour->Instructor= $reqeust->instructor;
+            $cour->only_subscriber = $reqeust->subscribed;
+            $cour->link =$reqeust->link;
+            $cour->created_at = Carbon::now();
+            $cour->save();
+       }
+       else
+       {
+          return redirect('/');
+       }
+   }
 
 }
