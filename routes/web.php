@@ -12,7 +12,7 @@
 */
 
 //Dashboard View
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth','CheckUserSubscription']], function () {
 
     Route::get('/formation',"DashboardController@index")->name('formation');
     Route::get('/Account',"DashboardController@account")->name('account');
@@ -36,8 +36,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/MakeMessageRead/{id_msg}',"MessageUserController@MakeMessageRead")->name("MakeMessageRead");
     //Send Message
     Route::post('/sendMessage',"MessageUserController@sendMessage")->name("sendMessage");
-    
  /*END SECTION MESSAGES*/   
+
+ /* COURS */
+    Route::get("/Cours","CoursController@index")->name('cours');
+
+/* END COURS */
 });
 
 
@@ -46,6 +50,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
+Route::get('Enseignant/Dashboard',"EnseignantController@index")->name('Enseignant_Dashboard');
 
 // LOGOUT USERS
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout_user');

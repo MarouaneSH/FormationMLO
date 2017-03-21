@@ -26,7 +26,7 @@ class ApiController extends Controller
        if($reqeust->key == "MarouaneSH-api")
        {
            //Here i send Data
-           return Messages_admin::all();
+           return Messages_admin::all()->sortByDesc("id")->values();
        }
        else
        {

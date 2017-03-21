@@ -2,7 +2,8 @@
 
 use Illuminate\Database\Seeder;
 use Carbon\Carbon;
-class MessageUserSeeder extends Seeder
+
+class MessageUsersSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,7 +12,7 @@ class MessageUserSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('messages_users')->insert([
+          DB::table('messages_users')->insert([
             [
             'user' => '1',
             'Sender_name'=> "Admin",

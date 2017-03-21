@@ -7,11 +7,50 @@ use Auth;
 use App\User;
 use Hash;
 use Response;
+use DateTime;
+use View;
+
 class DashboardController extends Controller
-{
+{   
+    
+ 
     public function index()
-     {
-         return view('Dashboard');
+     {  
+            if(!Auth::user()->subscribed)
+            {
+                //if user not subsribed return to dashboard without Date Inforamtion
+        
+                 return view('Dashboard');
+            }
+
+
+
+         $date_fin_subscription = Auth::user()->date_fin_subscription;
+
+         //Calculer le temps restant pour que la subscription finis
+         $date_fini = new DateTime($date_fin_subscription);
+         $date_now =  new DateTime(date('Y-m-d'));
+        
+        //check if subscritpion has ended
+         if($date_now >= $date_fini )
+         {
+            //If User susbcription has ended return to dashboard with message Ended
+            
+            return view('Dashboard',[
+                "subscribed" => false,
+            "subscribtion_finished"=> true, 
+            ]);
+         }
+
+         //if user Still Subsribied , Calculate Days Restant
+         $jours_restant =  $date_now->diff($date_fini)->format("%a");
+
+         return view('Dashboard',[
+             "subscribed" => $subscribed,
+             "date_subscription" => $date_subscription ,
+             "date_fin_subscription" => $date_fin_subscription,
+             "jours_restant" =>$jours_restant ,
+         ]);
      }
 
      public function account()

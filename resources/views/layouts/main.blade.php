@@ -17,12 +17,27 @@
                 <a class="navbar-brand" href="{{route('formation')}}"><i class="fa fa-graduation-cap" aria-hidden="true"></i>MLO FORMATION</a>
                 </div>
                 <ul class="nav navbar-nav navbar-right">
-                    <div class="dropdown">
+                    <i class="fa fa-bell-o notification" aria-hidden="true">
+                        <p>8</p>
+                    </i>
+                    <li class="notification-card">
+                        <a href="{{route('subscription')}}">
+                            <h5 style=" border-left: solid #FF5252;padding-left: 5px"><i class="fa fa-exclamation-circle" aria-hidden="true" style="color:red"></i>
+                            Vous n'avez aucun subscription <br> <span>Abonnez Vous Pour benificier de tous les cours </span>
+                            </h5>
+                        </a>
+                        @foreach($message_nameSender as $message)
+                          <h5><i class="fa fa-commenting-o" aria-hidden="true" style="color:#F9A825"></i>Vous Avez un nouveaux Messages de {{$message->Sender_name}}
+                              <br> <span>Sujet : {{str_limit($message->title, 30)}} </span>
+                          </h5>
+                        @endforeach
+                        
+                    </li>
+                    <div class="dropdown" style="display: inline-block;">
                         <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
                         <i class="fa fa-user" aria-hidden="true"></i>{{ Auth::user()->name }}
                         <span class="caret"></span></button>
-                        <ul class="dropdown-menu">
-                       
+                        <ul class="dropdown-menu">   
                         <li><a href="{{route('account')}}">Account</a></li>
                         <li><a href="{{route('logout_user')}}">Log out</a></li>
                         </ul>

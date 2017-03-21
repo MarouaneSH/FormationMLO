@@ -16,9 +16,11 @@ use Carbon\Carbon;
 class MessageUserController extends Controller
 {
     public function index()
-    {
+    {   //For security Raison , if user has ended subscirption and want to this route
+        $s = new DashboardController();
+    
         $user_id = Auth::user()->id;
-    return view("message",["user_id"=> $user_id ]);
+        return view("message",["user_id"=> $user_id ]);
     }
 
     //get Messages
