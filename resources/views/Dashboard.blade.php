@@ -22,7 +22,7 @@
                 <i class="fa fa-credit-card-alt" aria-hidden="true"></i>
                 Votre avez un compte grauit veuillez mettre a jour votre compte pur beneficier de tous les cours .
             </h5>
-            <button class="btn btn-success pull-right">Upgrade</button>
+            <button class="btn btn-success pull-right">Upgrade </button>
             <div class="clearfix"></div>
         </div>
     </div>
@@ -30,9 +30,22 @@
 <div class="row">
     <div class="col-md-7">
         <ul class="list-group">
-            <li class="list-group-item"><i class="fa fa-leanpub" aria-hidden="true"></i> Cours Récent <span><a href="#">Tous Les Cours</a></span></li>
+            <li class="list-group-item"><i class="fa fa-leanpub" aria-hidden="true"></i> Cours Récent <span><a href="{{route('cours')}}">Tous Les Cours</a></span></li>
             @foreach($cours as $cour)
-             <li class="list-group-item item">{{$cour->cours_name}} </li>
+
+                  @if($cour->only_subscriber == "0" && !$subscribed) 
+                    <li class="list-group-item item cour-select ">{{$cour->cours_name}}  <p class="gratuis pull-right">Gratuis</p></li>
+                    <input type="hidden" value="{{$cour->link}} ">
+                   
+                  @elseif(!$subscribed && $cour->only_subscriber == "1"  )
+                    <li class="list-group-item item cour-only-subscribed">{{$cour->cours_name}} <p class="sub-only pull-right">Subscriber's Only</p>
+                    </li>
+                     
+                  @endif
+                  @if($subscribed)
+                    <li class="list-group-item item cour-select ">{{$cour->cours_name}}</li>
+                    <input type="hidden" value="{{$cour->link}} ">
+                  @endif
             @endforeach
 
         </ul>
@@ -63,5 +76,23 @@
         </div>
    </div>
 </div>
+ <div class="cours-view">
+        <i class="fa fa-times exit" aria-hidden="true" style="color:white;z-index:10;position:fixed;top:10px;right:50px" ></i>
+        <div class="back-hide" style="display:block;text-align:center">
+            <iframe src="" frameborder="0" style="height:700px;width: 90%;height: 700px;max-width: 1200px;">
+            </iframe>
+        </div>
+    </div>
+@endsection
 
+@section("script")
+<script>
+$(document).ready(function(){
+    $(".cour-select").click(function(){
+        $(".cours-view ").show();
+         $(".back-hide ").eq(0).show();
+        $(".cours-view iframe").attr('src',$(this).parent().children("input").val())
+    })
+})
+</script>
 @endsection

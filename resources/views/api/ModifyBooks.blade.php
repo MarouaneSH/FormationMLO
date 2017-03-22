@@ -46,16 +46,17 @@
     </style>
 </head>
 <body>
-    {{Session::has('message')}}
+ 
     <div class="container AddCours">
-        <form action="{{route('StoreBooks')}}" id="form_ADDCOURS" method="POST" enctype="multipart/form-data">
+        <form action="{{route('editBooks')}}" id="form_ADDCOURS" method="POST" enctype="multipart/form-data">
                 {{csrf_field()}}
+                <input type="hidden" name="id" value="{{$id}}">
                 <div class="row form-group">
                    <div class="col-md-4">
                        <input type="hidden" name="key" value="MarouaneSH-api"> 
                    </div>
                    <div class="col-md-6">
-                        <h4 >Ajouter un nouveau Cours</h4>
+                        <h4 >Modification des Cours</h4>
                    </div>
                 </div>
                 <div class="row form-group">
@@ -63,7 +64,7 @@
                         Nom de Cours
                    </div>
                    <div class="col-md-6">
-                        <input type="text" name="name" class="form-control">
+                        <input type="text" name="name" class="form-control" value="{{$name}}">
                    </div>
                 </div>
                 <div class="row form-group">
@@ -71,7 +72,7 @@
                         Instructor
                    </div>
                    <div class="col-md-6">
-                        <input type="text" class="form-control" value="Admin" name="instructor">
+                        <input type="text" class="form-control" name="instructor" value="{{$instructor}}">
                    </div>
                 </div>
                 <div class="row form-group">
@@ -80,8 +81,14 @@
                    </div>
                    <div class="col-md-6">
                         <select name="subscribed" id="" class="form-control" >
-                            <option value="1">Oui</option>
-                            <option value="0">NON</option>
+                             @if($subscribed == 1 )
+                                <option value="1">Oui</option>
+                                <option value="0">NON</option>
+                             @else
+                                <option value="0">NON</option>
+                                <option value="1">Oui</option>
+                             @endif
+                            
                         </select>
                    </div>
                 </div>
@@ -90,8 +97,10 @@
                         Fichier de Cours
                    </div>
                    <div class="col-md-6">
-                        <input type="file" name="file">
-                        <button style="margin-top:50px;padding:20px">Ajouter le cours</button>
+                        <button class="btn btn-primary" id="chooseFile" style="float:left">Modifier le cours</button>
+                        <br>
+                        <input type="file" name="file" class="file" style="display:none">
+                        <button style="margin-top:50px;padding:20px" type="submit">Enregistrer</button>
                    </div>
                 </div>
         </form>
@@ -101,7 +110,13 @@
  
     <script src="{{asset('js/jquery-3.1.1.min.js')}}"></script>
    <script>
- 
+   $(document).ready(function(){
+         
+       $("#chooseFile").click(function(e){
+           e.preventDefault();
+         $(".file").trigger('click');
+       })
+   })
    
    </script>
 </body>

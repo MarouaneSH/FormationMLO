@@ -8,3 +8,28 @@
     float: right;
     text-decoration: none;
 }
+.cour-select
+{
+    cursor: pointer;
+}
+.cours-view
+{
+    display: none;
+}
+.cour-only-subscribed
+{
+ cursor: not-allowed;
+}
+.sub-only
+{
+    color: #FF5252;
+}
+.gratuis
+{
+    color: #23bab5;
+}
+.list-group-item:hover
+{
+    background: #2196F3;
+    color: white;
+}

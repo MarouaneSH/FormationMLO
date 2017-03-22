@@ -2,6 +2,7 @@ $(document).ready(function(){
     closeEXIT();
     ShowNotification();
     CalculNotification(0);
+   
 })
 
 function CalculNotification(substract)
