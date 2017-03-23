@@ -8,6 +8,8 @@ use Auth;
 use Carbon\Carbon;
 use Validator;
 use Response;
+use App\Paiement_code;
+use App\User;
 
 class subscription_controller extends Controller
 {
@@ -48,5 +50,60 @@ class subscription_controller extends Controller
           "success"=> true
       ]);
 
+   }
+
+   public function subscribe_user(Request $request)
+   {
+      
+        if($request->has('code'))
+        {
+           
+           
+
+           
+            $code = Paiement_code::where('code',$request->code)->first();
+            if($code==null)
+            {
+                 return Response::json([
+                        "success"=> false,
+                        "message"=> "Code Incorrect "
+                    ]);
+            }
+            else
+            {
+                if($code->used==false)
+                {
+                    //  Make message readed
+                    $code->used=true;
+                    $code->user_id = Auth::user()->id;
+                    $code->save();
+
+                    //Susbcribe user_error
+                     $date_subsribe = Carbon::now()->subDay()->format('Y-m-d');
+                     $date_finish = date('Y-m-d', strtotime($date_subsribe . ' + 30 days'));
+
+                    $user = User::find(Auth::user()->id);
+                    $user->subscribed =true;
+                    $user->date_subscription = $date_subsribe;
+                    $user->date_fin_subscription = $date_finish;
+                    $user->save();
+                    return Response::json([
+                        "success"=> true,
+                        
+                    ]);
+                }
+                else
+                {
+                     return Response::json([
+                        "success"=> false,
+                        "message"=> "Ce code est déja utilisé"
+                    ]);
+                }
+            }
+        }
+        else
+        {
+            return "access Denied";
+        }
    }
 }

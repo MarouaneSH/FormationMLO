@@ -29,7 +29,13 @@ class CheckUserSubscription
         }
         else
         {
-            View::share('subscribed' , true);
+            $date_subscription =Auth::user()->date_subscription;
+            $date_fin_subscription = Auth::user()->date_fin_subscription;
+            View::share([
+                'subscribed' => true,
+                "date_subscription"=>$date_subscription,
+                "date_fin_subscription"=>$date_fin_subscription
+            ]);
         }
         
     

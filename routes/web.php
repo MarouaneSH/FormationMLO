@@ -22,8 +22,11 @@ Route::group(['middleware' => ['auth','CheckUserSubscription']], function () {
     //Change User ACCOUNT Information
     Route::post('/changeINFO','DashboardController@changeINFO')->name('changeINFO');
 
-    //Send Request Paiement Validation
+    //Subscription    Send Request Paiement Validation
     Route::post('/Verification_demande',"subscription_controller@store")->name('verfication_demande');
+    Route::post('/Subscribe_user',"subscription_controller@subscribe_user")->name('subscribe_user');
+
+
 
 /* Messages */
     //Get All Messages
@@ -40,6 +43,7 @@ Route::group(['middleware' => ['auth','CheckUserSubscription']], function () {
 
  /* COURS */
     Route::get("/Cours","CoursController@index")->name('cours');
+    Route::get("/Docs_cours","CoursController@getDocs")->name('getDocs');
 
 /* END COURS */
 

@@ -91,6 +91,16 @@
                    </div>
                    <div class="col-md-6">
                         <input type="file" name="file">
+                        
+                   </div>
+                </div>
+                <div class="row form-group">
+                   <div class="col-md-4">
+                       document supplémentaire
+                   </div>
+                   <div class="col-md-6">
+                        <input type="file" name="docs[]" multiple>
+                 
                         <button style="margin-top:50px;padding:20px">Ajouter le cours</button>
                    </div>
                 </div>

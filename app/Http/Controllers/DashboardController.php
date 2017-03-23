@@ -17,9 +17,10 @@ class DashboardController extends Controller
  
     public function index()
      {  
+            $cours = Cour::all()->sortByDesc('id')->values()->take(5);
             if(!Auth::user()->subscribed)
             {
-                 $cours = Cour::all()->sortByDesc('id')->values()->take(5);
+                 
         
                  return view('Dashboard',[
                      "cours" => $cours,
@@ -47,12 +48,10 @@ class DashboardController extends Controller
 
          //if user Still Subsribied , Calculate Days Restant
          $jours_restant =  $date_now->diff($date_fini)->format("%a");
-
+        
          return view('Dashboard',[
-             "subscribed" => $subscribed,
-             "date_subscription" => $date_subscription ,
-             "date_fin_subscription" => $date_fin_subscription,
              "jours_restant" =>$jours_restant ,
+              "cours" => $cours,
          ]);
      }
 

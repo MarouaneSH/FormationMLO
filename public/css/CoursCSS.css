@@ -18,3 +18,58 @@ tr:hover
 {
     display: none;
 }
+
+.sub-only
+{
+    float: right;
+    color: red;
+    margin-right: 80px;
+}
+.free
+{
+    float: right;
+    color: #23bab5;
+    margin-right: 100px;
+}
+.subscribers-only ,.displayDocs
+{
+    width: 60%;
+    min-width: 200px;
+    height: 400px;
+    background: #2196F3;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    color: white;
+    padding-top: 100px;
+    text-align: center;
+    display: none;
+    z-index: 10;
+    max-width: 800px;
+}
+.displayDocs
+{
+    border-left: solid #2196F3 10px;
+    display: block;
+     background: #f9f9f9;
+     padding: 20px;
+     overflow: auto;
+     display: none;
+
+}
+.displayDocs table
+{
+    color: black;
+}
+.displayDocs table td
+{
+    text-align: left;
+}
+
+.subscribers-only button
+{
+    margin-top: 20px;
+}

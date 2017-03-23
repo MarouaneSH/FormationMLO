@@ -32,7 +32,12 @@
                 <div class="row form-group">
                     <div class="col-md-4">Subsciption : </div>
                     <div class="col-md-8">
-                    <input type="text" class="form-control" disabled value="{{$subscribed}}">
+                    @if($subscribed)
+                       <input type="text" class="form-control" disabled value="Oui">
+                    @else
+                       <input type="text" class="form-control" disabled value="Non">
+                    @endif
+                   
                     </div>
                 </div>
                 <div class="row form-group">
@@ -76,6 +81,9 @@
                Vous n'avez aucun abonnement
             </p>
             <button class="btn btn-success">Abonnez vous</button>
+            @else
+            <h5>Date d'Abonnement : <span style="color:#23bab5">{{$date_subscription}}</span></h5>
+            <h5>Date fin d'Abonnement : <span style="color:#FF5252">{{$date_fin_subscription}}</span></h5>
             @endif
          </div>       
      </div>    

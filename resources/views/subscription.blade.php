@@ -17,16 +17,19 @@
 @endsection
 @section('content')
 
+@if(!$subscribed)
 <div class="row">
     <div class="card" style="border-left:solid #23bab5 5px">
             <h4>
                 Entrer le Code d'Abonnement 
-                <input type="text" class="subscribe-number form-control" >
+                <input type="text" class="subscribe-number form-control" style="width:150px" id="codetext" required>
                 <button id="bntVerification" class="btn btn-primary">Verifier</button>
+              
             </h4>
             
     </div>
 </div>
+@endif
 <div class="row">
     <div class="card">
         <h4><i class="fa fa-credit-card-alt" aria-hidden="true"></i>
@@ -171,6 +174,40 @@ $(document).ready(function() {
             }
     })
 
+    //Subscribe user
+    $("#bntVerification").click(function(){
+        if($("#codetext").val() =="")
+        {
+            alert("Vous Devez Saisir un chiffre de 12 characters");
+        }
+        else
+        {
+                $.ajax({
+                url:"{{route('subscribe_user')}}",
+                type:"POST",
+                data:{code:$("#codetext").val(),_token:"{{csrf_token()}}"},
+                success:function(data){
+                    console.log(data.success)
+                    if(data.success==true)
+                    {
+                        alert("Felicitation! vous etes maintenant abonnez");
+                         window.location.href = "{{route('formation')}}";
+                    }
+                    else
+                    {
+                    alert(data.message);
+                    
+                    }
+                },
+                error:function()
+                {
+                 
+                     alert("Une erreur s'est produit , contactez le developpeur pour resodre ce probleme")
+                }
+            })
+        }
+        
+    })
    GetAjaxData("{{route('verfication_demande')}}", $("#request-verification") ,"POST",$(".paiement-verification"));
   //submit form
 // $("#request-verification").submit(function(e)

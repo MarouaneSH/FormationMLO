@@ -21,12 +21,19 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get("getUsers","ApiController@ShowUser");
 Route::get("getSpecifiUsers","ApiController@getUser");
 Route::get("getMessages","ApiController@ShowMessages");
-Route::get("AddBooks","ApiController@AddBooks");
-Route::post("/AddBooks","ApiController@storeBooks")->name('StoreBooks');
+
 
 
 //CRUD COURS
+Route::get("AddBooks","ApiController@AddBooks");
+Route::post("/AddBooks","ApiController@storeBooks")->name('StoreBooks');
 Route::get("getAllCours","ApiController@getAllCours");
 Route::get("RemoveCours","ApiController@RemoveCours");
 Route::get("ModifyBooks","ApiController@ModifyBooks");
 Route::post("editCours","ApiController@editCours")->name('editBooks');
+
+//Add Cours Docs
+Route::get('addCoursDocs',"ApiController@addCoursDocs");
+
+//Genration de paiement
+Route::get("genereteCode","ApiController@generateCode");

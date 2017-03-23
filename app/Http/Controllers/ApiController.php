@@ -12,8 +12,9 @@ use Storage;
 use ZipArchive;
 use Session;
 use Redirect;
-
-
+use App\Paiement_code;
+use Illuminate\Support\Facades\Input;
+use App\Cours_docs;
 
 class ApiController extends Controller
 {
@@ -82,6 +83,7 @@ class ApiController extends Controller
 
           if($validation->fails())
           {
+              return $validation->errors();
               return '<h1 style= "
                     
                     height: 100%;
@@ -95,30 +97,41 @@ class ApiController extends Controller
                    
                     ';
           }
+
+
+
            $file = $reqeust->file;
            $random_name = str_random(15);
            $full_file_name = $random_name ."--".$file->getClientOriginalName();
-           
-           $url = Storage::putFileAs("public/cours_zip"  , $file ,  $full_file_name);
+           $extension =  $file->getClientOriginalExtension(); 
+
+           if($extension=="zip")
+           {
+                  $url = Storage::putFileAs("public/cours_zip"  , $file ,  $full_file_name);
          
-           //When uplouad to ftp mus delete \\\\
-           $path_to_unzip =  storage_path().'\app\\'. str_replace("/","\\", $url);
-           $path_to_store = storage_path().'\app\public\Cours\\' .$full_file_name ;
+                    //When uplouad to ftp mus delete \\\\
+                    $path_to_unzip =  storage_path().'\app\\'. str_replace("/","\\", $url);
+                    $path_to_store = storage_path().'\app\public\Cours\\' .$full_file_name ;
 
-           //unzip file 
-           $zip = new ZipArchive;
-            if ($zip->open($path_to_unzip) === TRUE) {
-                $zip->extractTo($path_to_store);
-                $zip->close();
-            } 
-            else {
-                return "Unzip de fichier a été echoué";
-            }
-            //END UNZIP
+                    //unzip file 
+                    $zip = new ZipArchive;
+                        if ($zip->open($path_to_unzip) === TRUE) {
+                            $zip->extractTo($path_to_store);
+                            $zip->close();
+                        } 
+                        else {
+                            return "Unzip de fichier a été echoué";
+                        }
+                        //END UNZIP
 
-             $path_cours= "/storage/Cours/".$full_file_name."/story_html5.html";
-
-
+                        $path_cours= "/storage/Cours/".$full_file_name."/story_html5.html";
+           }
+          else
+          {
+               $url = Storage::putFileAs("public/cours_single"  , $file ,  $full_file_name);
+               $path_cours="/storage/cours_single/".$full_file_name;
+          }
+            
             $cour = new Cour();
             $cour->cours_name = $reqeust->name;
             $cour->Instructor= $reqeust->instructor;
@@ -126,9 +139,39 @@ class ApiController extends Controller
             $cour->link = $path_cours;
             $cour->created_at = Carbon::now();
             $cour->save();
+          
+            //Store Docs to this Cours
+            if($reqeust->hasFile('docs'))
+            {
+               
+                $docs = $reqeust->docs;
+                foreach(Input::file("docs") as $doc) {
+                        $docs_name = "MLO-FORMATION-".str_random(8).$doc->getClientOriginalName();
+                        $url = Storage::putFileAs("public/cours_docs"  , $doc ,$docs_name  );
+                        $document = new Cours_docs();
+                        //give the ID of the current Cour
+                        $document->cours_id =$cour->id;
+                        $document->Nom=$doc->getClientOriginalName();
+                        $document->extension = $doc->getClientOriginalExtension();
+                        $document->link ="/storage/cours_docs/".$docs_name ;
+                        $document->save();              
+                    }
+               
+            }
             
-            Session::flash('message', "Special message goes here");
-            return "Cours a été ajoute avec success";
+
+            return '<h1 style= "
+                    
+                    height: 100%;
+                    background: #19b395;
+                    color: white;
+                    text-align: center;
+                    padding-top: 80px;>  ">
+                    Le Cours a été ajouté avec success
+                
+                    </h1>
+                   
+                    ';
        }
        else
        {
@@ -141,7 +184,7 @@ class ApiController extends Controller
        if($reqeust->key =="MarouaneSH-api")
        {
            
-           return Cour::all();
+           return Cour::all()->sortByDesc("id")->values();
        }
        else
        {
@@ -187,7 +230,7 @@ class ApiController extends Controller
                     background: #19b395;
                     color: white;
                     text-align: center;
-                    padding-top: 80px;> Tous les champs sont obligatoire ">
+                    padding-top: 80px;> Le nom est obligatoire">
                     Tous les champs sont obligatoire
                      <a  href="http://localhost:8000/api/ModifyBooks" style="color:blue">Retry</a>
                     </h1>
@@ -209,32 +252,54 @@ class ApiController extends Controller
                     $random_name = str_random(15);
                     $full_file_name = $random_name ."--".$file->getClientOriginalName();
                     
-                    $url = Storage::putFileAs("public/cours_zip"  , $file ,  $full_file_name);
-                    
-                    //When uplouad to ftp mus delete \\\\
-                    $path_to_unzip =  storage_path().'\app\\'. str_replace("/","\\", $url);
-                    $path_to_store = storage_path().'\app\public\Cours\\' .$full_file_name ;
+                    $extension =  $file->getClientOriginalExtension(); 
 
-                    //unzip file 
-                    $zip = new ZipArchive;
-                        if ($zip->open($path_to_unzip) === TRUE) {
-                            $zip->extractTo($path_to_store);
-                            $zip->close();
-                        } 
-                        else {
-                            return "Unzip de fichier a été echoué";
+                        if($extension=="zip")
+                        {
+
+                            $url = Storage::putFileAs("public/cours_zip"  , $file ,  $full_file_name);
+                            
+                            //When uplouad to ftp mus delete \\\\
+                            $path_to_unzip =  storage_path().'\app\\'. str_replace("/","\\", $url);
+                            $path_to_store = storage_path().'\app\public\Cours\\' .$full_file_name ;
+
+                            //unzip file 
+                            $zip = new ZipArchive;
+                                if ($zip->open($path_to_unzip) === TRUE) {
+                                    $zip->extractTo($path_to_store);
+                                    $zip->close();
+                                } 
+                                else {
+                                    return "Unzip de fichier a été echoué";
+                                }
+                                //END UNZIP
+
+                                $path_cours= "/storage/Cours/".$full_file_name."/story_html5.html";
+                                
+
+                                //Modify Cours 
+                                $cours->link = $path_cours;
                         }
-                        //END UNZIP
-
-                        $path_cours= "/storage/Cours/".$full_file_name."/story_html5.html";
-                        
-
-                        //Modify Cours 
-                        $cours->link = $path_cours;
+                        else
+                        {
+                             $url = Storage::putFileAs("public/cours_docs"  , $file ,  $full_file_name);
+                             $path_cours="storage/cours_docs/".$full_file_name;
+                             $cours->link = $path_cours;
+                        }
                     }
               
               $cours->save();
-              return "Success";
+               return '<h1 style= "
+                    
+                    height: 100%;
+                    background: #19b395;
+                    color: white;
+                    text-align: center;
+                    padding-top: 80px;> Le nom est obligatoire">
+                    Success ! le cours a été modifier avec success
+                    </h1>
+                   
+                    ';
          
         }
         else
@@ -251,5 +316,21 @@ class ApiController extends Controller
            "subscribed"=>$reqeust->subscribed,
            "id"=>$reqeust->id
        ]);
+   }
+
+   public function generateCode(Request $reqeust)
+   {
+        if($reqeust->key =="MarouaneSH-api")
+        {
+            $code = new Paiement_code();
+            $code->code=$reqeust->code;
+            $code->used= false;
+            $code->save();
+            return "Successs";
+        }
+         else
+        {
+            return "Acces denied";
+        }
    }
 }

@@ -163,6 +163,9 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Chumper\Zipper\ZipperServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
+
+
 
         /*
          * Package Service Providers...
@@ -227,6 +230,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Zipper' => 'Chumper\Zipper\Zipper'::class,
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
 
     ],
 

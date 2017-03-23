@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Paiement extends Migration
+class PaiementCodes extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class Paiement extends Migration
      */
     public function up()
     {
-        Schema::create('paiements', function (Blueprint $table) {
-            $table->string('code')->unique();
-            $table->string('user');
-            $table->date('date_paiment');
-            $table->string('type');
+         Schema::create('paiement_codes', function (Blueprint $table) {
+                    $table->increments('id');
+                    $table->string('code');
+                    $table->boolean('used');
+                    $table->string("user_id")->nullable();
         });
     }
 
@@ -28,6 +28,6 @@ class Paiement extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('paiements');
+        Schema::dropIfExists('paiement_codes');
     }
 }

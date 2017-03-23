@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class MessageAdmin extends Migration
+class CoursDocs extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class MessageAdmin extends Migration
      */
     public function up()
     {
-        Schema::create('messages_admins', function (Blueprint $table) {
+        Schema::create('cours_docs', function (Blueprint $table) {
                     $table->increments('id');
-                    $table->string('user_id');
-                    $table->string('title');
-                    $table->string('comment');
-                    $table->date('date_message');
-                    $table->boolean('read');
+                    $table->string('cours_id');
+                    $table->string('Nom');
+                    $table->string('extension');
+                    $table->string("link");
         });
     }
 
@@ -30,6 +29,6 @@ class MessageAdmin extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('messages_admins');
+        Schema::dropIfExists('cours_docs');
     }
 }
