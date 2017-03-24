@@ -28,13 +28,17 @@
                         <td class="select">{{$cour->cours_name}} <span class="free">Gratuis</span></td>
                         <td class="select">{{$cour->Instructor}}</td>
                         <td class="select"><i class="fa fa-eye" aria-hidden="true"></i></td>
+                        <td><i class="fa fa-file-text showDocs" aria-hidden="true"></i></td>
                         <input type="hidden" value="{{$cour->link}}">
+                         <input type="hidden" value="{{$cour->id}}">
                       </tr>                   
                       @elseif(!$subscribed && $cour->only_subscriber == "1")
                       <tr class="onlySub">   
                         <td>{{$cour->cours_name}} <span class="sub-only">Subscriber's Only</span></td>
                         <td>{{$cour->Instructor}}</td>
-                        <td><i class="fa fa-eye" aria-hidden="true"></i></td>                       
+                        <td><i class="fa fa-eye" aria-hidden="true"></i></td>
+                        <td> <i class="fa fa-ban" aria-hidden="true"></i></td>
+                       
                       </tr>
                       @endif
                         @if($subscribed)
@@ -113,7 +117,7 @@
                             <tr>
                                 <td>`+docs.Nom+`</td>
                                 <td>`+docs.extension+`</td>
-                                <td> <a href="`+docs.link+`"><i class="fa fa-cloud-download" aria-hidden="true"></a></i></td>
+                                <td> <a href="`+docs.link+`" download><i class="fa fa-cloud-download" aria-hidden="true"></a></i></td>
                             </tr>
                         
                         `);

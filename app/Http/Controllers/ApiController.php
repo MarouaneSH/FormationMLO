@@ -15,13 +15,28 @@ use Redirect;
 use App\Paiement_code;
 use Illuminate\Support\Facades\Input;
 use App\Cours_docs;
+use App\Messages_user;
+use Datatables;
 
 class ApiController extends Controller
 {
+    public function getUsersDatatable(Request $reqeust)
+    {
+        if($reqeust->key == "MarouaneSH-api")
+       {
+           return Datatables::eloquent(User::query())->make(true);
+        
+       }
+       else
+       {
+           return "Access Denied";
+       }
+    }
    public function ShowUser(Request $reqeust)
    {
        if($reqeust->key == "MarouaneSH-api")
        {
+          
            return User::all();
        }
        else
@@ -331,6 +346,93 @@ class ApiController extends Controller
          else
         {
             return "Acces denied";
+        }
+   }
+
+
+   public function NewMessage(Request $reqeust){
+       if($reqeust->key =="MarouaneSH-api" )
+       {
+          return view("api.NewMessage");
+       }
+        else
+        {
+            return "Acces denied";
+        }
+   }
+
+   public function postMessage(Request $reqeust)
+   {
+        if($reqeust->key =="MarouaneSH-api" )
+       {
+          $validation = Validator::make($reqeust->all(),[
+              "sujet"=>"required",
+              "message"=>"required"
+          ]);
+
+                  if($validation->fails())
+                  {
+                      return Response::json([
+                          "success"=>false,
+                          "message"=>"Tous les champs sont obligatoire",
+                      ]);
+                  }
+
+                if($reqeust->select=="tous")
+                {
+                    $users= User::all();
+
+                    foreach($users as $user)
+                    {
+                        $message = new Messages_user();
+                        $message->comment = $reqeust->message;
+                        $message->title = $reqeust->sujet;
+                        $message->date_message= Carbon::now();
+                        $message->Sender_name = "Admin";
+                        $message->read = false;
+                        $message->user =$user->id;
+                        $message->save();  
+                    }
+
+                    return Response::json([
+                        "success"=>true,
+                        
+                    ]);
+                }
+                else
+                {
+                    if($reqeust->has("user_id"))
+                    {
+                            $message = new Messages_user();
+                            $message->comment = $reqeust->message;
+                            $message->title = $reqeust->sujet;
+                            $message->date_message= Carbon::now();
+                            $message->Sender_name = "Admin";
+                            $message->read = false;
+                            $message->user = $reqeust->user_id;
+                            $message->save();  
+                        return Response::json([
+                        "success"=>true,
+                       
+                       ]);
+                    }
+                    else
+                    {
+                        return Response::json([
+                        "success"=>false,
+                        "message"=>"Vous devez Selectionner un utilisateur"
+                       ]);
+                    }
+                }
+
+          
+       }
+        else
+        {
+           return Response::json([
+                        "success"=>false,
+                        "message"=>"Access denied"
+                       ]);
         }
    }
 }

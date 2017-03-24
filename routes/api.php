@@ -17,6 +17,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get("getUsersDatatable","ApiController@getUsersDatatable");
 
 Route::get("getUsers","ApiController@ShowUser");
 Route::get("getSpecifiUsers","ApiController@getUser");
@@ -37,3 +38,8 @@ Route::get('addCoursDocs',"ApiController@addCoursDocs");
 
 //Genration de paiement
 Route::get("genereteCode","ApiController@generateCode");
+
+
+//New Message
+Route::get('NewMessage',"ApiController@NewMessage");
+Route::post('NewMessage',"ApiController@postMessage")->name('NewMessage');

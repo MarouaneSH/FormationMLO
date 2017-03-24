@@ -34,8 +34,11 @@
             @foreach($cours as $cour)
 
                   @if($cour->only_subscriber == "0" && !$subscribed) 
-                    <li class="list-group-item item cour-select ">{{$cour->cours_name}}  <p class="gratuis pull-right">Gratuis</p></li>
-                    <input type="hidden" value="{{$cour->link}} ">
+                    <li class="list-group-item item cour-select ">{{$cour->cours_name}} 
+                        <p class="gratuis pull-right">Gratuis</p>
+                        <input type="hidden" value="{{$cour->link}} ">
+                   </li>
+                    
                    
                   @elseif(!$subscribed && $cour->only_subscriber == "1"  )
                     <li class="list-group-item item cour-only-subscribed">{{$cour->cours_name}} <p class="sub-only pull-right">Subscriber's Only</p>
@@ -43,8 +46,8 @@
                      
                   @endif
                   @if($subscribed)
-                    <li class="list-group-item item cour-select ">{{$cour->cours_name}}</li>
-                    <input type="hidden" value="{{$cour->link}} ">
+                    <li class="list-group-item item cour-select ">{{$cour->cours_name}} <input type="hidden" value="{{$cour->link}} "></li>
+                    
                   @endif
             @endforeach
 
@@ -91,7 +94,7 @@ $(document).ready(function(){
     $(".cour-select").click(function(){
         $(".cours-view ").show();
          $(".back-hide ").eq(0).show();
-        $(".cours-view iframe").attr('src',$(this).parent().children("input").val())
+        $(".cours-view iframe").attr('src',$(this).children("input").val())
     })
 })
 </script>
