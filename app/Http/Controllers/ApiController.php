@@ -441,7 +441,7 @@ class ApiController extends Controller
    {
        if($reqeust->key =="MarouaneSH-api" )
        {
-             return Paiement_code::all()->sortByDesc('id')->values();
+             return Paiement_code::with('User')->orderByDesc('id')->get();
        }
        else
        {
@@ -454,7 +454,7 @@ class ApiController extends Controller
    {
        if($reqeust->key =="MarouaneSH-api" )
        {
-             return Verification_paiement::all()->sortByDesc('id')->values();
+             return User::with('Verification_paiement')->where('subscribed',"0")->orderByDesc('id')->get();
        }
        else
        {

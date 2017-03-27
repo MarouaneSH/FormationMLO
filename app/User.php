@@ -43,4 +43,8 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Messages_admin', 'user_id', 'id');
     }
+    // public function Paiement_code()
+    // {
+    //     //return $this->hasOne('App\Paiement_code','user_id','id');
+    // }
 }

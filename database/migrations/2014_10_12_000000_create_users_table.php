@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->date('date_fin_subscription')->nullable();
             $table->rememberToken();
             $table->timestamps();
+            $table->date('paiement_id')->nullable();
         });
     }
 

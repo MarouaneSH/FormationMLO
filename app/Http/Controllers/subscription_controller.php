@@ -74,6 +74,8 @@ class subscription_controller extends Controller
                 if($code->used==false)
                 {
                     //  Make message readed
+                    Auth::user()->paiement_id = $code->id;
+                    Auth::user()->save();
                     $code->used=true;
                     $code->user_id = Auth::user()->id;
                     $code->save();
