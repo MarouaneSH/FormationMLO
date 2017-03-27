@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Input;
 use App\Cours_docs;
 use App\Messages_user;
 use Datatables;
+use App\Verification_paiement;
 
 class ApiController extends Controller
 {
@@ -434,5 +435,31 @@ class ApiController extends Controller
                         "message"=>"Access denied"
                        ]);
         }
+   }
+
+   public function paiementCode(Request $reqeust)
+   {
+       if($reqeust->key =="MarouaneSH-api" )
+       {
+             return Paiement_code::all()->sortByDesc('id')->values();
+       }
+       else
+       {
+           return "Access denied";
+       }
+      
+   }
+
+     public function demandeVerification(Request $reqeust)
+   {
+       if($reqeust->key =="MarouaneSH-api" )
+       {
+             return Verification_paiement::all()->sortByDesc('id')->values();
+       }
+       else
+       {
+           return "Access denied";
+       }
+      
    }
 }

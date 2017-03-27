@@ -43,3 +43,9 @@ Route::get("genereteCode","ApiController@generateCode");
 //New Message
 Route::get('NewMessage',"ApiController@NewMessage");
 Route::post('NewMessage',"ApiController@postMessage")->name('NewMessage');
+
+//Getpaiement
+Route::get('/paiementCode',"ApiController@paiementCode");
+
+//Demande verification
+Route::get('/demandeVerification',"ApiController@demandeVerification");
