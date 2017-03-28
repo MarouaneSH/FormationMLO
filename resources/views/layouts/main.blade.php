@@ -60,6 +60,11 @@
                     <li class="menu-header">COURS</li>
                     <li><i class="fa fa-book" aria-hidden="true"></i><a href="{{route('cours')}}">Cours</a></li>
                     <li><i class="fa fa-comment-o" aria-hidden="true"></i><a href="{{route('message')}}">Messages</a></li>
+                    <li class="menu-header">Bibliothèque</li>
+                    <li><i class="fa fa-folder-open-o" aria-hidden="true"></i><a href="{{route('bibliotheque')}}">Bibliothèque</a></li>
+                    <li class="menu-header">Signaler un probleme</li>
+                    <li><i class="fa fa-exclamation" aria-hidden="true"></i><a href="{{route('signaler')}}">Signaler</a></li>
+                    
                 </ul>
             </div>
             <div class="container">

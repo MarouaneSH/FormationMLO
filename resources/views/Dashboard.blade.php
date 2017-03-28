@@ -22,7 +22,7 @@
                 <i class="fa fa-credit-card-alt" aria-hidden="true"></i>
                 Votre avez un compte grauit veuillez mettre a jour votre compte pur beneficier de tous les cours .
             </h5>
-            <button class="btn btn-success pull-right">Upgrade </button>
+            <button class="btn btn-success pull-right"> <a href="{{route('subscription')}}" style="color:white">Upgrade</a> </button>
             <div class="clearfix"></div>
         </div>
     </div>

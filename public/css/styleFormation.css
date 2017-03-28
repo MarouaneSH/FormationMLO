@@ -1,6 +1,7 @@
 .list-group
 {
-    margin-top: 20px
+    margin-top: 20px;
+        border-left: solid 5px #2196f3;
 }
 .list-group a
 {

@@ -49,3 +49,10 @@ Route::get('/paiementCode',"ApiController@paiementCode");
 
 //Demande verification
 Route::get('/demandeVerification',"ApiController@demandeVerification");
+
+//Add docs bibliotheque
+
+Route::get('/PostBiblio',"ApiController@PostBiblio");
+Route::post("/AddDocBiblio","ApiController@AddDocBiblio")->name('AddDocBiblio');
+
+Route::get('problems',"ApiController@problems");

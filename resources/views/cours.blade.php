@@ -90,6 +90,7 @@
             </tbody>
         </table>
     </div>
+    {{$cours->links() }}
 @endsection
 @section('script')
 <script>

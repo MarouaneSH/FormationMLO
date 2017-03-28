@@ -10,6 +10,10 @@ use Response;
 use DateTime;
 use View;
 use App\Cour;
+use Storage;
+use App\Problem;
+use Carbon\Carbon;
+use Session;
 
 class DashboardController extends Controller
 {   
@@ -39,7 +43,8 @@ class DashboardController extends Controller
          if($date_now >= $date_fini )
          {
             //If User susbcription has ended return to dashboard with message Ended
-            
+            Auth::user()->subscribed =0;
+            Auth::user()->save();
             return view('Dashboard',[
                 "subscribed" => false,
             "subscribtion_finished"=> true, 
@@ -163,5 +168,38 @@ class DashboardController extends Controller
           return Response::json([
             'success'=> true
         ]);
+     }
+
+     public function signaler()
+     {
+         return view('signaler');
+     }
+     public function signalerPost(Request $request)
+     {
+          $this->validate($request,[
+                        'msg'=>'required|max:250',
+                    ]);
+                       
+                       $problem = new Problem();
+                       $problem->NomUser = Auth::user()->name;
+                       $problem->telephone = Auth::user()->name;
+                       $problem->comment = $request->msg;
+                       $problem->date =Carbon::now();
+                       if($request->hasFile('file'))
+                       {
+                   
+                               $file = $request->file;
+                                $random_name = str_random(15);
+                                $full_file_name = $random_name ."--".$file->getClientOriginalName();
+                                $url = Storage::putFileAs("public/problem"  , $file ,  $full_file_name);
+                                $path_cours="/storage/problem/".$full_file_name;
+                                
+                                $problem->linkAttach = $path_cours;
+                       }
+                       $problem->save();
+                       Session::flash('success',"Votre message a été envoyer avec success");
+                       return redirect()->back();
+                       
+                        
      }
 }

@@ -47,10 +47,11 @@ Route::group(['middleware' => ['auth','CheckUserSubscription']], function () {
 
 /* END COURS */
 
+    Route::get('/bibliotheque',"BiblioController@index")->name('bibliotheque');
 
-//Api Send Messages
 
-
+    Route::get('/signaler',"DashboardController@signaler")->name('signaler');
+    Route::post('/signaler',"DashboardController@signalerPost")->name('signalerPost');
 });
 
 

@@ -53,14 +53,15 @@
                     <button class="btn form-controll">012345679879988</button>
                 </div>
             </div>
-            <div class="row">
+           
+        </div>
+         <div class="card" style="border-left:solid 10px #23bab5">
                 <div class="col-md-12 already">
-                 <h4>Vous Avez Déja Payer ? </h4>
+                 <h4>Si vous avez déja payer  </h4>
                    <a id="lbl-verification">Cliquez ici</a> , pour qu'on puisse verifier votre paiement
                 </div>
-                
+                <div class="clearfix"></div>
             </div>
-        </div>
         
     </div>
      <div class="col-md-6">
@@ -91,6 +92,26 @@
                     src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >
 
              </form>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+             <h4>Vous pouvez payer avec : </h4>
+             <div class="col-md-3">
+                <img src="{{asset('img/Rapport-de-Stage-wafacash.jpg')}}" class="img-responsive">
+             </div>
+             <div class="col-md-3">
+                <img src="{{asset('img/cashplus.PNG')}}" class="img-responsive">
+             </div>
+             <div class="col-md-3">
+                <img src="{{asset('img/Western-Union-logo-WU-1024x762.png')}}" class="img-responsive">
+             </div>
+           
+             <div class="clearfix"></div>
+             <h4 style="margin-top:20px">Les informations à communiquer</h4>
+             <h4>Nom : Hamid MARCHICH</h4>
+              <h4>Télephone : 06 27 40 48</h4>
+            
         </div>
     </div>
     <div class="paiement-verification">

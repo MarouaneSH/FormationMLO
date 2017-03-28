@@ -7,12 +7,14 @@ use App\Cour;
 use App\User;
 use App\Cours_docs;
 use Response;
+use Illuminate\Support\Facades\DB;
 
 class CoursController extends Controller
 {
      public function index()
     {   
-        $cours = Cour::all()->sortByDesc('id')->values();
+        $cours = DB::table('cours')->orderBy('id', 'desc')->paginate(15);
+        
         $users = User::all();
         return view('cours',
         [

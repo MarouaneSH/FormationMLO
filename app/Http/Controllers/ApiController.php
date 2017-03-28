@@ -18,6 +18,8 @@ use App\Cours_docs;
 use App\Messages_user;
 use Datatables;
 use App\Verification_paiement;
+use App\Bibliotheque;
+use App\Problem;
 
 class ApiController extends Controller
 {
@@ -461,5 +463,93 @@ class ApiController extends Controller
            return "Access denied";
        }
       
+   }
+
+   public function PostBiblio(Request $reqeust)
+   {
+       if($reqeust->key =="MarouaneSH-api" )
+       {
+             return view('api.addBiblio');
+       }
+       else
+       {
+           return "Access denied";
+       }
+   }
+   public function AddDocBiblio(Request $reqeust)
+   {
+       if($reqeust->key =="MarouaneSH-api" )
+       {
+              
+       if($reqeust->key =="MarouaneSH-api")
+       {
+           
+                    $validation = Validator::make($reqeust->all(),[
+                        "name" => "required",
+                     
+                        "file"=>"required",
+                    ]);
+
+                    if($validation->fails())
+                    {
+              
+                        return '<h1 style= "
+                                
+                                height: 100%;
+                                background: #F1F3F6;
+                                color: black;
+                                text-align: center;
+                                padding-top: 80px;> Tous les champs sont obligatoire ">
+                                Tous les champs sont obligatoire
+                                <a  href="http://localhost:8000/api/PostBiblio?key=MarouaneSH-api" style="color:blue">Retry</a>
+                                </h1>
+                            
+                                ';
+                    }
+                
+                        $file = $reqeust->file;
+                        $random_name = str_random(15);
+                        $full_file_name = $random_name ."--".$file->getClientOriginalName();
+                        $extension =  $file->getClientOriginalExtension(); 
+                        
+                         $url = Storage::putFileAs("public/biblothque"  , $file ,  $full_file_name);
+                         $path_cours="/storage/biblothque/".$full_file_name;
+                        
+                        $bibliotheque = new Bibliotheque();
+                        $bibliotheque->name = $reqeust->name;
+                        $bibliotheque->link = $path_cours;
+                        $bibliotheque->type = $extension ;
+                        $bibliotheque->only_subscribe = $reqeust->subscribed;
+                        $bibliotheque->save();
+                       return '<h1 style= "
+                    
+                    height: 100%;
+                    background: #F1F3F6;
+                    color: black;
+                    text-align: center;
+                    padding-top: 80px;> Le nom est obligatoire">
+                    Success ! le document a été modifier avec success
+                    </h1>
+                   
+                    ';
+       }
+       else
+       {
+           return "Access denied";
+       }
+    }
+   }
+
+
+   public function problems(Request $reqeust)
+   {
+       if($reqeust->key =="MarouaneSH-api" )
+       {
+             return Problem::all();
+       }
+       else
+       {
+           return "Access denied";
+       }
    }
 }
