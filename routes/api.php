@@ -46,7 +46,7 @@ Route::post('NewMessage',"ApiController@postMessage")->name('NewMessage');
 
 //Getpaiement
 Route::get('/paiementCode',"ApiController@paiementCode");
-
+Route::get('/RemovePaiementCode',"ApiController@removeCode");
 //Demande verification
 Route::get('/demandeVerification',"ApiController@demandeVerification");
 

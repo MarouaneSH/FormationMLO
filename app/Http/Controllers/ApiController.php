@@ -552,4 +552,29 @@ class ApiController extends Controller
            return "Access denied";
        }
    }
+
+   public function removeCode(Request $reqeust)
+   {
+       if($reqeust->key =="MarouaneSH-api" )
+       {
+             $user = User::where('paiement_id',$reqeust->id)->first();
+            
+             if(!empty($user))
+             {
+              
+                 $user->subscribed = 0;
+                  $user->save();
+             }
+        
+             $problem = Paiement_code::find($reqeust->id);
+             $problem->delete();
+             return Response::json([
+                 "success"=>true
+             ]);
+       }
+       else
+       {
+           return "Access denied";
+       }
+   }
 }

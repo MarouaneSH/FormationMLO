@@ -53,7 +53,7 @@
                 <input type="hidden" name="id" value="{{$id}}">
                 <div class="row form-group">
                    <div class="col-md-4">
-                       <input type="hidden" name="key" value="MarouaneSH-api"> 
+                         <input type="hidden" name="key" value="MarouaneSH-api"> 
                    </div>
                    <div class="col-md-6">
                         <h4 >Modification des Cours</h4>
@@ -115,6 +115,7 @@
        $("#chooseFile").click(function(e){
            e.preventDefault();
          $(".file").trigger('click');
+         
        })
    })
    

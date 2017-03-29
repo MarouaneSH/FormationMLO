@@ -42,12 +42,14 @@ class DashboardController extends Controller
         //check if subscritpion has ended
          if($date_now >= $date_fini )
          {
+            
             //If User susbcription has ended return to dashboard with message Ended
             Auth::user()->subscribed =0;
             Auth::user()->save();
             return view('Dashboard',[
                 "subscribed" => false,
-            "subscribtion_finished"=> true, 
+                "subscribtion_finished"=> true, 
+                 "cours" => $cours,
             ]);
          }
 
